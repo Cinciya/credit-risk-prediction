@@ -1,58 +1,179 @@
-# Credit Risk Prediction System
+# AI-Powered Credit Risk Prediction System
 
-## Overview
-
-The Credit Risk Prediction System is an end-to-end Machine Learning project developed to predict whether a loan applicant is likely to default on a loan based on financial and demographic information. This project demonstrates the complete machine learning workflow including data preprocessing, feature engineering, model training, evaluation, and deployment using Flask.
-
-The system uses the XGBoost Classifier algorithm to analyze borrower-related attributes such as income, employment length, loan amount, interest rate, credit history, and home ownership status to predict loan risk.
-
-The project was designed to simulate a real-world banking and fintech risk assessment pipeline and showcases practical machine learning engineering and deployment skills.
+Production-grade Machine Learning system for predicting loan default risk using XGBoost, FastAPI, Streamlit, and Explainable AI (SHAP).
 
 ---
 
-# Features
+# Business Problem
 
-* End-to-End Machine Learning Pipeline
-* Data Cleaning and Preprocessing
-* Handling Missing Values
-* Categorical Feature Encoding
-* SMOTE-Based Class Imbalance Handling
-* XGBoost Classification Model
-* Model Evaluation and Performance Metrics
-* Flask-Based Web Application
-* Real-Time Credit Risk Prediction
-* Modular and Scalable Project Structure
+Financial institutions face major losses due to loan defaults and inaccurate risk assessment.
+
+Traditional loan approval systems are:
+- Manual and time-consuming
+- Difficult to scale
+- Inconsistent across applicants
+- Unable to leverage large-scale behavioral patterns
+
+Banks and lending institutions require an intelligent automated solution that can:
+- Predict risky borrowers before loan approval
+- Reduce financial losses caused by defaults
+- Accelerate loan processing
+- Improve decision-making accuracy
+- Provide explainable predictions for compliance and trust
+
+This project addresses these challenges using Machine Learning and Explainable AI.
 
 ---
 
-# Project Architecture
+# Solution Overview
+
+This system predicts whether a loan applicant is:
+- **Low Risk**
+- **High Risk**
+
+based on customer financial and behavioral attributes.
+
+The project includes:
+- End-to-end Machine Learning pipeline
+- Real-time prediction API
+- Explainable AI using SHAP
+- Interactive Streamlit dashboard
+- Production deployment-ready backend
+
+---
+
+# Key Features
+
+- Real-time credit risk prediction
+- XGBoost classification model
+- Automated preprocessing pipeline
+- Categorical feature encoding
+- Explainable AI with SHAP
+- Interactive Streamlit dashboard
+- REST API with FastAPI
+- Production-ready architecture
+- Cloud deployment support
+
+---
+
+# Tech Stack
+
+## Machine Learning
+- Python
+- Scikit-learn
+- XGBoost
+- Pandas
+- NumPy
+
+## Explainable AI
+- SHAP
+
+## Backend
+- FastAPI
+- Uvicorn
+
+## Frontend Dashboard
+- Streamlit
+
+## Deployment
+- Render
+- GitHub
+
+---
+
+# Dataset
+
+Dataset used:
+- Credit Risk / Loan Prediction Dataset
+
+Features include:
+- Person Age
+- Income
+- Employment Length
+- Home Ownership
+- Loan Intent
+- Loan Grade
+- Interest Rate
+- Loan Amount
+- Credit History Length
+- Previous Loan Defaults
+
+---
+
+# Machine Learning Pipeline
+
+The project uses a production-ready Scikit-learn Pipeline:
+
+1. Data Cleaning
+2. Missing Value Handling
+3. Categorical Encoding
+4. Feature Transformation
+5. Model Training
+6. Risk Prediction
+7. Explainability Generation
+
+---
+
+# Model Architecture
+
+## Algorithm Used
+- XGBoost Classifier
+
+## Why XGBoost?
+- High prediction performance
+- Handles tabular financial data effectively
+- Robust against overfitting
+- Fast inference for real-time APIs
+
+---
+
+# Explainable AI (SHAP)
+
+The system integrates SHAP explainability to:
+- Interpret model predictions
+- Visualize feature importance
+- Improve transparency
+- Support financial compliance requirements
+- Explain why an applicant is classified as risky
+
+Example insights:
+- High loan amount increases risk
+- Previous defaults strongly impact prediction
+- Low income-to-loan ratio reduces approval probability
+
+---
+
+# Streamlit Dashboard
+
+The project includes an interactive dashboard with:
+- Loan application form
+- Real-time prediction interface
+- Risk classification output
+- SHAP explanation charts
+- Clean UI for business users
+
+---
+
+# Project Structure
 
 ```bash
 credit-risk-prediction/
+│
+├── app/
+│   ├── main.py                     # FastAPI backend
+│   └── schemas.py                 # API request schema
+│
+├── models/
+│   └── credit_risk_pipeline.pkl   # Trained ML pipeline
 │
 ├── data/
 │   └── credit_risk_dataset.csv
 │
 ├── notebooks/
-│   └── eda.ipynb
+│   └── credit_risk_analysis.ipynb
 │
-├── src/
-│   ├── preprocessing.py
-│   ├── train.py
-│   ├── predict.py
-│   └── utils.py
-│
-├── models/
-│   └── credit_risk_model.pkl
-│
-├── app/
-│   ├── app.py
-│   └── templates/
-│       └── index.html
-│
-├── dashboard/
-│   └── dashboard.py
-│
+├── dashboard.py                   # Streamlit dashboard
+├── train_pipeline.py              # Training pipeline
 ├── requirements.txt
 ├── README.md
 └── .gitignore
@@ -60,140 +181,19 @@ credit-risk-prediction/
 
 ---
 
-# Technologies Used
-
-## Programming Language
-
-* Python
-
-## Machine Learning Libraries
-
-* Scikit-learn
-* XGBoost
-* Imbalanced-learn
-
-## Data Processing
-
-* Pandas
-* NumPy
-
-## Visualization
-
-* Matplotlib
-* Seaborn
-
-## Deployment
-
-* Flask
-
-## Model Serialization
-
-* Joblib
-
----
-
-# Machine Learning Workflow
-
-## 1. Data Collection
-
-The dataset contains financial and borrower-related information such as:
-
-* Person Age
-* Income
-* Employment Length
-* Home Ownership
-* Loan Intent
-* Loan Grade
-* Loan Amount
-* Interest Rate
-* Credit History Length
-* Previous Loan Default History
-
----
-
-## 2. Data Preprocessing
-
-The preprocessing pipeline performs:
-
-* Missing value handling
-* Categorical variable encoding
-* Feature transformation
-* Train-test splitting
-* Data balancing using SMOTE
-
----
-
-## 3. Handling Imbalanced Data
-
-Financial datasets often contain imbalanced classes where non-default cases are significantly higher than default cases.
-
-To solve this issue, SMOTE (Synthetic Minority Oversampling Technique) was applied to generate synthetic minority samples and improve model performance.
-
----
-
 # Model Training
 
-The project uses the XGBoost Classifier algorithm for loan default prediction.
+Train the ML pipeline:
 
-## Why XGBoost?
+```bash
+python train_pipeline.py
+```
 
-XGBoost is widely used in:
+This generates:
 
-* Banking
-* Fraud Detection
-* Financial Risk Analysis
-* Credit Scoring
-* Kaggle Competitions
-
-because of its:
-
-* High Accuracy
-* Fast Training
-* Excellent Performance on Structured Data
-* Ability to Handle Complex Relationships
-
----
-
-# Model Evaluation
-
-The model was evaluated using multiple classification metrics:
-
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* Classification Report
-
-## Model Performance
-
-| Metric    | Score |
-| --------- | ----- |
-| Accuracy  | 93%   |
-| Precision | 92%   |
-| Recall    | 75%   |
-| F1-Score  | 83%   |
-
-The model achieved strong performance in identifying high-risk loan applicants while maintaining good overall prediction accuracy.
-
----
-
-# Flask Web Application
-
-A Flask-based web interface was developed to allow real-time prediction.
-
-Users can enter:
-
-* Income
-* Loan Amount
-* Interest Rate
-* Employment Information
-* Credit History
-* Loan Intent
-
-and instantly receive:
-
-* Low Risk Prediction
-* High Risk Prediction
+```bash
+models/credit_risk_pipeline.pkl
+```
 
 ---
 
@@ -202,44 +202,34 @@ and instantly receive:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/credit-risk-prediction.git
+git clone https://github.com/Cinciya/credit-risk-prediction.git
 ```
 
----
-
-## Navigate to Project Folder
+## Navigate to Project
 
 ```bash
 cd credit-risk-prediction
 ```
 
----
-
 ## Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
----
-
-## Activate Environment
 
 ### Windows
 
 ```bash
+python -m venv venv
 venv\Scripts\activate
 ```
 
-### Linux/Mac
+### Mac/Linux
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
 ---
 
-## Install Dependencies
+# Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -247,89 +237,137 @@ pip install -r requirements.txt
 
 ---
 
-# Running the Project
-
-## Train Model
+# Run FastAPI Backend
 
 ```bash
-cd src
-python train.py
+uvicorn app.main:app --reload
+```
+
+API runs at:
+
+```bash
+http://127.0.0.1:8000
 ```
 
 ---
 
-## Run Flask Application
+# Run Streamlit Dashboard
 
 ```bash
-cd app
-python app.py
+streamlit run dashboard.py
 ```
 
-Open browser:
+Dashboard runs at:
 
 ```bash
-http://127.0.0.1:5000
+http://localhost:8501
 ```
 
 ---
 
-# Sample Inputs
+# API Endpoint
 
-| Feature               | Value    |
-| --------------------- | -------- |
-| Age                   | 35       |
-| Income                | 75000    |
-| Employment Length     | 8        |
-| Home Ownership        | OWN      |
-| Loan Intent           | PERSONAL |
-| Loan Grade            | C        |
-| Default On File       | N        |
-| Loan Amount           | 15000    |
-| Interest Rate         | 11.5     |
-| Loan Percent Income   | 0.20     |
-| Credit History Length | 10       |
+## POST `/predict`
+
+### Example Request
+
+```json
+{
+  "person_age": 35,
+  "person_income": 50000,
+  "person_home_ownership": "RENT",
+  "person_emp_length": 5,
+  "loan_intent": "PERSONAL",
+  "loan_grade": "B",
+  "loan_amnt": 10000,
+  "loan_int_rate": 11.5,
+  "loan_percent_income": 0.2,
+  "cb_person_default_on_file": "N",
+  "cb_person_cred_hist_length": 8
+}
+```
+
+---
+
+# Example Response
+
+```json
+{
+  "prediction": "Low Risk"
+}
+```
+
+---
+
+# Deployment
+
+The project is deployment-ready on:
+- Render
+- Railway
+- AWS
+- Azure
+
+---
+
+# Render Deployment Configuration
+
+## Build Command
+
+```bash
+pip install -r requirements.txt
+```
+
+## Start Command
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 10000
+```
+
+---
+
+# Business Impact
+
+This solution can help financial institutions:
+- Reduce loan default risk
+- Improve approval efficiency
+- Increase prediction consistency
+- Automate credit risk assessment
+- Improve customer experience
 
 ---
 
 # Future Improvements
 
-* Streamlit Dashboard Integration
-* SHAP Explainability
-* Docker Deployment
-* Cloud Deployment using AWS
-* Real-Time API Integration
-* Advanced Feature Engineering
-* Hyperparameter Optimization
-* CI/CD Pipeline
+- Docker containerization
+- CI/CD pipeline integration
+- MLflow experiment tracking
+- Real-time monitoring
+- Drift detection
+- User authentication
+- Cloud database integration
+- Loan recommendation engine
 
 ---
 
-# Skills Demonstrated
+# Resume Value
 
-This project demonstrates practical skills in:
-
-* Machine Learning
-* Financial Risk Analytics
-* Feature Engineering
-* Data Preprocessing
-* Model Evaluation
-* Flask Deployment
-* Python Development
-* End-to-End ML Engineering
-* Predictive Analytics
+This project demonstrates:
+- End-to-End Machine Learning Engineering
+- Explainable AI (XAI)
+- Financial Risk Analytics
+- Production ML Pipelines
+- API Development
+- Dashboard Development
+- Cloud Deployment
+- Real-world Problem Solving
 
 ---
 
-# Conclusion
+# Author
 
-The Credit Risk Prediction System is a production-style machine learning application developed to solve a real-world financial risk analysis problem. The project showcases the complete lifecycle of a machine learning solution from data preprocessing and model training to deployment and real-time inference.
+## Cinciya Melathil
 
-This project highlights practical Data Science, Machine Learning Engineering, and AI deployment skills relevant for roles in:
+Aspiring AI Engineer | Data Scientist | ML Engineer
 
-* Data Science
-* Machine Learning Engineering
-* AI Engineering
-* Financial Analytics
-* FinTech
-
----
+GitHub:
+https://github.com/Cinciya
